@@ -40,19 +40,23 @@ void tarefa_5(void);
 void tarefa_6(void);
 void tarefa_7(void);
 void tarefa_8(void);
+void tarefa_9(void);
+voide tarefa_10(void);
 
 /*
  * Configuracao dos tamanhos das pilhas
  */
-#define TAM_PILHA_1			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_2			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_3			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_4			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_5			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_6			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_7			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_8			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_OCIOSA	(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_1			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_2			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_3			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_4			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_5			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_6			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_7			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_8			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_9			    (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_10			(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_OCIOSA	    (TAM_MINIMO_PILHA + 24)
 
 /*
  * Declaracao das pilhas das tarefas
@@ -65,6 +69,8 @@ uint32_t PILHA_TAREFA_5[TAM_PILHA_5];
 uint32_t PILHA_TAREFA_6[TAM_PILHA_6];
 uint32_t PILHA_TAREFA_7[TAM_PILHA_7];
 uint32_t PILHA_TAREFA_8[TAM_PILHA_8];
+uint32_t PILHA_TAREFA_9[TAM_PILHA_9];
+uint32_t PILHA_TAREFA_10[TAM_PILHA_10];
 uint32_t PILHA_TAREFA_OCIOSA[TAM_PILHA_OCIOSA];
 
 /*
@@ -83,6 +89,10 @@ int main(void)
 	CriaTarefa(tarefa_1, "Tarefa 1", PILHA_TAREFA_1, TAM_PILHA_1, 2);
 	
 	CriaTarefa(tarefa_2, "Tarefa 2", PILHA_TAREFA_2, TAM_PILHA_2, 1);
+
+	CriaTarefa(tarefa_9, "Tarefa 9", PILHA_TAREFA_9, TAM_PILHA_2, 2);
+
+	CriaTarefa(tarefa_10, "Tarefa 10", PILHA_TAREFA_10, TAM_PILHA_2, 1);
 	
 	/* Cria tarefa ociosa do sistema */
 	CriaTarefa(tarefa_ociosa,"Tarefa ociosa", PILHA_TAREFA_OCIOSA, TAM_PILHA_OCIOSA, 0);
@@ -245,4 +255,28 @@ void tarefa_8(void)
 		
 		SemaforoLibera(&SemaforoVazio);
 	}
+}
+
+void tarefa_9(void)
+{
+  int contador; 
+  
+  for(contador = 1; contador <= 10; contador++)
+  {
+    printf("%d ", contador);
+  }
+  
+		
+}
+
+void tarefa_10(void)
+{
+	for(;;)
+    {
+        // Ação a ser executada: inverter o estado do LED
+        port_pin_toggle_output_level(LED_0_PIN);
+        
+        // Suspende a tarefa por 100 ms, tornando-a periódica
+        TarefaEspera(100);
+    }
 }
